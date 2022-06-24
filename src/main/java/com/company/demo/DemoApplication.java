@@ -1,6 +1,7 @@
 package com.company.demo;
 
 import com.company.demo.user.AppUser;
+import com.company.demo.user.Gender;
 import com.company.demo.user.UserService;
 import com.company.demo.user.role.AppPermission;
 import com.company.demo.user.role.AppRole;
@@ -34,6 +35,7 @@ public class DemoApplication {
             adminRole.setPermissions(userService.getPermissions());
             userService.saveUser(new AppUser("Luis", "luis", "contra", Set.of(adminRole)));
             AppUser user = new AppUser("Javier", "javi", "contra", Set.of(new AppRole("ROLE_USER")));
+            user.setGender(Gender.MALE);
             userService.saveUser(user);
             userService.assignPermissionToUser(user.getId(), String.format("%s:READ", user.getClass().getSimpleName()));
         };
